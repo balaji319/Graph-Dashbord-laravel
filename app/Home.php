@@ -19,7 +19,7 @@ class Home extends Model
             for($i=$minutes_in; $i <= 60; $i=$i+2 ){
                $sql = "SELECT count(*) as Calls FROM hangups where DATEPART(minute, hangupdate) = '".$i."' and hangupdate >= '".$last_hr_time."' and CompanyID = '". session('user_info')->CompanyID ."'";
                $info = DB::select($sql);
-               
+
                $min_arr[] = $i;
                $count_arr[] = $info[0]->Calls;
             }
@@ -35,8 +35,8 @@ class Home extends Model
             throw $ex;
         }
     }
-    
-    
+
+
     public static function hourlyCalls() {
         try {
             $current_time = date('Y-m-d H:i:s');
@@ -62,7 +62,7 @@ class Home extends Model
             $sql = "SELECT TOP 10 Campaigns.Name, HangUps.HangUpCount, HangUps.CallerID, HangUps.CallDuration,Campaigns.Campaign FROM hangups HangUps INNER JOIN campaigns Campaigns ON HangUps.CampaignID = Campaigns.CampaignID"
                     . " where CompanyID = '". session('user_info')->CompanyID ."' and hangupdate >= '".date('Y-m-d')."' and hangupdate < '".$current_time."' order by hangupdate desc";
             $info = DB::select($sql);
-            
+
             return $info;
         } catch (Exception $ex) {
             throw $ex;

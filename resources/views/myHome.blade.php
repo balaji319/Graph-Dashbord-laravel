@@ -26,9 +26,9 @@ $var_date = date("D - M. d Y", $unixTime);  ?>
                         <ul class="dropdown-menu" role="menu">
                           <li><a href="#" class="lineStatus" data-time='1' >Live </a>
                           </li>
-                          <li><a href="#"  class="lineStatus active_tab" data-time='5' >5 Second</a>
+                          <li><a href="#"  class="lineStatus " data-time='5' >5 Second</a>
                           </li>
-                          <li><a href="#"  class="lineStatus" data-time='15'>15 Second </a>
+                          <li><a href="#"  class="lineStatus active_tab" data-time='15'>15 Second </a>
                           </li>
                           <li><a href="#"  class="lineStatus" data-time='30'>30 Second</a>
                           </li>
@@ -333,14 +333,9 @@ var getDataline = function() {
   $.ajax({
     url: '/advert-spikes-past-hour',
     success: function(data) {
-      // process your data to pull out what you plan to use to update the chart
-      // e.g. new label and a new data point
-      console.log("aaaaaa");
-      console.log(data)
-      // add new label and data point to chart's underlying data structures
-      //myChart.data.labels.push("Post " + postId++);
-      myChart.data.labels=["January", "February", "March", "April", "May", "June", "July"];
-      myChart.data.datasets[1].data=getRandomIntInclusive(-1,2);
+
+      myChart.data.labels=data.data.min;
+      myChart.data.datasets[1].data=data.data.count_arr;
       // re-render the chart
       myChart.update();
     }
@@ -349,7 +344,7 @@ var getDataline = function() {
 
 getDataline();
 // get new data every 3 seconds
-var getDataInterval = setInterval(getDataline, 5000);
+var getDataInterval = setInterval(getDataline, 15000);
 $("body").on( "click", ".lineStatus", function() {
   clearInterval(getDataInterval);
   var link_name = $(this).attr('data-time')
@@ -402,11 +397,7 @@ var myChart = new Chart(ctx_live, {
     datasets: [{
           label: '# of Votes',
           backgroundColor: "#26B99A",
-          data: getRandomIntInclusiveArray(24)
-          }, {
-          label: '# of Votes',
-          backgroundColor: "#03586A",
-          data: getRandomIntInclusiveArray(24)
+          data: []
           }]
 
   },
@@ -428,35 +419,27 @@ var myChart = new Chart(ctx_live, {
               }
       }]
     }
+
   }
 });
 
-
-
-// logic to get new data
-var getData = function() {
-  $.ajax({
-    url: 'https://jsonplaceholder.typicode.com/posts/' + postId + '/comments',
-    success: function(data) {
-      // process your data to pull out what you plan to use to update the chart
-      // e.g. new label and a new data point
-      console.log("aaaaaa");
-      console.log(myChart.data)
-      // add new label and data point to chart's underlying data structures
-      //myChart.data.labels.push("Post " + postId++);
-      myChart.data.datasets[0].data=getRandomIntInclusiveArray(24);
-      myChart.data.datasets[1].data=getRandomIntInclusiveArray(24);
-      // re-render the chart
-      myChart.update();
+      // logic to get new data
+      var getData = function() {
+        $.ajax({
+          url: '/hourly-calls',
+          success: function(data) {
+            myChart.data.labels==data.data.hrs_calls;
+            myChart.data.datasets[0].data=data.data.count_arr;
+            // re-render the chart
+            myChart.update();
+          }
+        });
+      };
+      // get new data every 3 seconds
+      setInterval(getData,5000);
     }
-  });
-};
-
-// get new data every 3 seconds
-setInterval(getData,5000);
-      }
-      }
-    }
+   }
+}
 jQuery(document).ready(function($){
 
     var myUrl = "api/my-bar";
