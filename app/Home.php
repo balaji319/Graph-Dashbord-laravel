@@ -14,17 +14,22 @@ class Home extends Model
             $minutes_in_minus = date('i', strtotime('-1 hour'));
             $last_hr_time = date('Y-m-d H:i:s', strtotime('-1 hour'));
             $current_time = date('Y-m-d H:i:s');
-            $adv_spikes = [];
+            $min_arr = [];
+            $count_arr = [];
             for($i=$minutes_in; $i <= 60; $i=$i+2 ){
                $sql = "SELECT count(*) as Calls FROM hangups where DATEPART(minute, hangupdate) = '".$i."' and hangupdate >= '".$last_hr_time."' and CompanyID = '". session('user_info')->CompanyID ."'";
                $info = DB::select($sql);
-               $adv_spikes[] = ['min'=>$i,'calls'=>$info[0]->Calls];
+               
+               $min_arr[] = $i;
+               $count_arr[] = $info[0]->Calls;
             }
             for($i=0; $i < $minutes_in_minus; $i=$i+2 ){
                $sql = "SELECT count(*) as Calls FROM hangups where DATEPART(minute, hangupdate) = '".$i."' and hangupdate >= '".$last_hr_time."' and CompanyID = '". session('user_info')->CompanyID ."'";
                $info = DB::select($sql);
-               $adv_spikes[] = ['min'=>$i,'calls'=>$info[0]->Calls];
+               $min_arr[] = $i;
+               $count_arr[] = $info[0]->Calls;
             }
+            $adv_spikes = ['min'=>$min_arr,'count_arr'=>$count_arr];
             return $adv_spikes;
         } catch (Exception $ex) {
             throw $ex;
@@ -36,15 +41,31 @@ class Home extends Model
         try {
             $current_time = date('Y-m-d H:i:s');
             $hrs_calls = [];
+            $count_arr = [];
             for($i=0; $i <= 23; $i++ ){
                $sql = "SELECT count(*) as Calls FROM hangups where DATEPART(hour, hangupdate) = '".$i."' and hangupdate >= '".date('Y-m-d')."' and CompanyID = '". session('user_info')->CompanyID ."' and hangupdate < '".$current_time."'";
                $info = DB::select($sql);
-               $hrs_calls[] = ['hrs'=>$i,'calls'=>$info[0]->Calls];
+               $hrs_calls[] = $i;
+               $count_arr[] = $info[0]->Calls;
             }
-            return $hrs_calls;
+            $arr = ['hrs_calls'=>$hrs_calls,'count_arr'=>$count_arr];
+            return $arr;
         } catch (Exception $ex) {
             throw $ex;
         }
     }
 
+    public static function mostRecentCalls() {
+        try {
+            $current_time = date('Y-m-d H:i:s');
+            $hrs_calls = [];
+            $sql = "SELECT TOP 10 Campaigns.Name, HangUps.HangUpCount, HangUps.CallerID, HangUps.CallDuration,Campaigns.Campaign FROM hangups HangUps INNER JOIN campaigns Campaigns ON HangUps.CampaignID = Campaigns.CampaignID"
+                    . " where CompanyID = '". session('user_info')->CompanyID ."' and hangupdate >= '".date('Y-m-d')."' and hangupdate < '".$current_time."' order by hangupdate desc";
+            $info = DB::select($sql);
+            
+            return $info;
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
 }

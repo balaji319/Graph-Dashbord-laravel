@@ -58,3 +58,4 @@ Route::group(['namespace' => 'Web'], function() {
 */
 Route::get('advert-spikes-past-hour', 'Api\Report\HomeController@advertSpikesPastHour');
 Route::get('hourly-calls', 'Api\Report\HomeController@hourlyCalls');
+Route::get('most-recent-calls', 'Api\Report\HomeController@mostRecentCalls');

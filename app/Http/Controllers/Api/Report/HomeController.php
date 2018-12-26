@@ -52,8 +52,8 @@ class HomeController extends Controller
 
     public function mostRecentCalls(Request $request) {
         try {
-            print_r( session('Responce')->CompanyID);
-            $response = User::mostRecentCalls();
+            print_r( session('user_info')->CompanyID);
+            $response = Home::mostRecentCalls();
             return response()->json([
                 'status' => 200,
                 'message' => 'Success',
