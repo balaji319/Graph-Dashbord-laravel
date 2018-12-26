@@ -49,3 +49,11 @@ Route::group(['namespace' => 'Web'], function() {
     Route::get('statical-summary', 'Report\ReportController@staticalSummary');
 
 });
+
+
+
+/**
+
+*/
+Route::get('advert-spikes-past-hour', 'Api\Report\HomeController@advertSpikesPastHour');
+Route::get('hourly-calls', 'Api\Report\HomeController@hourlyCalls');

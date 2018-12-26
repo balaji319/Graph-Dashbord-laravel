@@ -11,10 +11,11 @@ class UserController extends Controller {
 
     public function login(Request $request) {
         try {
-            if (!($request->session()->exists('token') && $request->hasCookie('token'))) {
+
+            if (!($request->session())) {
                 return view('login');
             } else {
-                return redirect('dashboard');
+                return redirect('my-home');
             }
         } catch (Exception $ex) {
             throw $ex;
