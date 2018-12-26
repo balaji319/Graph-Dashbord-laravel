@@ -11,9 +11,9 @@
   |
  */
 
-/*Route::get('/', function () {
-    return view('login');
-});*/
+/* Route::get('/', function () {
+  return view('login');
+  }); */
 /*
   |--------------------------------------------------------------------------
   | Register and Login Routes
@@ -25,17 +25,16 @@ Route::group([], function() {
 
     Route::get('/', 'UserController@login');
 
-    Route::post('/login','UserController@loginApi');
-
+    Route::post('/login', 'UserController@loginApi');
 });
 
 
 Route::get('/', 'UserController@login');
 Route::get('login', 'UserController@login');
 
-    Route::get('my-home', 'UserController@myHome');
-    Route::get('my-users', 'UserController@myUsers');
-    Route::get('logout', 'UserController@logout');
+Route::get('my-home', 'UserController@myHome');
+Route::get('my-users', 'UserController@myUsers');
+Route::get('logout', 'UserController@logout');
 
 /*
   |--------------------------------------------------------------------------
@@ -48,15 +47,20 @@ Route::group(['namespace' => 'Web'], function() {
     Route::get('exe-summary', 'Report\ReportController@exeSummary');
     Route::get('network-summary', 'Report\ReportController@networkCallSummary');
     Route::get('statical-summary', 'Report\ReportController@staticalSummary');
-
 });
 
 
 
 /**
+ * User Dashboard api.
+ * @author Harshal Pawar. <harshal.pawar@ytel.co.in>
+ */
 
-*/
-Route::get('advert-spikes-past-hour', 'Api\Report\HomeController@advertSpikesPastHour');
-Route::get('hourly-calls', 'Api\Report\HomeController@hourlyCalls');
-Route::get('most-recent-calls', 'Api\Report\HomeController@mostRecentCalls');
-Route::get('top-active-numbers', 'Api\Report\HomeController@topActiveNumbers');
+Route::group(['middleware' => ['userAuth']], function() {
+    Route::get('advert-spikes-past-hour', 'Api\Report\HomeController@advertSpikesPastHour');
+    Route::get('hourly-calls', 'Api\Report\HomeController@hourlyCalls');
+    Route::get('most-recent-calls', 'Api\Report\HomeController@mostRecentCalls');
+    Route::get('top-active-numbers', 'Api\Report\HomeController@topActiveNumbers');
+});
+
+
