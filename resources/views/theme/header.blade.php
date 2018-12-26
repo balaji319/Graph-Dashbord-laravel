@@ -1,7 +1,4 @@
 <!--
-
-
-
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -81,7 +78,6 @@
                 <h3>General</h3>
                 <ul class="nav side-menu">
                   <li><a href="{{ url('/my-home') }}" ><i class="fa fa-home"></i> Home </a>
-
                   </li>
                   <li><a><i class="fa fa-edit"></i> Reports <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -133,7 +129,7 @@
               <a data-toggle="tooltip" data-placement="top" title="Lock">
                 <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="/logout" >
+              <a data-toggle="tooltip" data-placement="top" title="Logout"  href="/logout" >
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
             </div>

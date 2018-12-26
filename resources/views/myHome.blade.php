@@ -2,6 +2,10 @@
 
 @section('title', 'Call-Q Reporting Service')
 @section('content')
+<?php
+date_default_timezone_set('America/Los_Angeles');
+$unixTime = time();
+$var_date = date("D - M. d Y", $unixTime);  ?>
       <div class="">
             <div class="page-title">
               <div class="title_left">
@@ -13,24 +17,24 @@
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Advert Spikes Past Hour / Mon - Dec. 24, 2018<small></small></h2>
+                    <h2>Advert Spikes Past Hour /  <?php echo $var_date ?><small></small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
                       <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                         <ul class="dropdown-menu" role="menu">
-                          <li><a href="#" onclick="updatetime(0)">Live </a>
+                          <li><a href="#" class="lineStatus" data-time='1' >Live </a>
                           </li>
-                          <li><a href="#">5 Second</a>
+                          <li><a href="#"  class="lineStatus active_tab" data-time='5' >5 Second</a>
                           </li>
-                          <li><a href="#">15 Second </a>
+                          <li><a href="#"  class="lineStatus" data-time='15'>15 Second </a>
                           </li>
-                          <li><a href="#">30 Second</a>
+                          <li><a href="#"  class="lineStatus" data-time='30'>30 Second</a>
                           </li>
-                          <li><a href="#">1 min</a>
+                          <li><a href="#"  class="lineStatus" data-time='60'>1 min</a>
                           </li>
-                           <li><a href="#">5 min</a>
+                           <li><a href="#"  class="lineStatus" data-time='360'>5 min</a>
                           </li>
                         </ul>
                       </li>
@@ -49,11 +53,11 @@
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Hourly Calls / Mon - Dec. 24, 2018 <small></small></h2>
+                    <h2>Hourly Calls / <?php echo $var_date ?><small></small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
-                      <li class="dropdown">
+                      {{-- <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                         <ul class="dropdown-menu" role="menu">
                           <li><a href="#">Settings 1</a>
@@ -61,7 +65,7 @@
                           <li><a href="#">Settings 2</a>
                           </li>
                         </ul>
-                      </li>
+                      </li> --}}
                       <li><a class="close-link"><i class="fa fa-close"></i></a>
                       </li>
                     </ul>
@@ -90,7 +94,7 @@
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
-                      <li class="dropdown">
+                      {{-- <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                         <ul class="dropdown-menu" role="menu">
                           <li><a href="#">Settings 1</a>
@@ -98,7 +102,7 @@
                           <li><a href="#">Settings 2</a>
                           </li>
                         </ul>
-                      </li>
+                      </li> --}}
                       <li><a class="close-link"><i class="fa fa-close"></i></a>
                       </li>
                     </ul>
@@ -143,11 +147,11 @@
      <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Top Active Numbers / Mon - Dec. 24, 2018 <small></small></h2>
+                    <h2>Top Active Numbers / <?php echo $var_date?> <small></small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
-                      <li class="dropdown">
+                      {{-- <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                         <ul class="dropdown-menu" role="menu">
                           <li><a href="#">Settings 1</a>
@@ -155,7 +159,7 @@
                           <li><a href="#">Settings 2</a>
                           </li>
                         </ul>
-                      </li>
+                      </li> --}}
                       <li><a class="close-link"><i class="fa fa-close"></i></a>
                       </li>
                     </ul>
@@ -205,7 +209,51 @@
     <script src="{!! asset('vendors/jquery/dist/jquery.min.js') !!}"></script>
             <script type="text/javascript">
 
-    function init_charts_home(type,data) {
+function init_recent_table(min, max) {
+
+// logic to get new data
+var getDataRecentCalls = function() {
+  $.ajax({
+    url: 'api/my-bar',
+    success: function(data) {
+      // process your data to pull out what you plan to use to update the chart
+      // e.g. new label and a new data point
+      console.log("aaaaaa");
+      console.log(myChart.data)
+      // add new label and data point to chart's underlying data structures
+      //myChart.data.labels.push("Post " + postId++);
+      myChart.data.datasets[0].data=getRandomIntInclusive(-1,2);
+      myChart.data.datasets[1].data=getRandomIntInclusive(-1,2);
+      // re-render the chart
+      myChart.update();
+    }
+  });
+};
+}
+
+function init_active_table(min, max) {
+  // logic to get new data
+  var getDataActiveCalls = function() {
+  $.ajax({
+    url: 'api/my-bar',
+    success: function(data) {
+      // process your data to pull out what you plan to use to update the chart
+      // e.g. new label and a new data point
+      console.log("aaaaaa");
+      console.log(myChart.data)
+      // add new label and data point to chart's underlying data structures
+      //myChart.data.labels.push("Post " + postId++);
+      myChart.data.datasets[0].data=getRandomIntInclusive(-1,2);
+      myChart.data.datasets[1].data=getRandomIntInclusive(-1,2);
+      // re-render the chart
+      myChart.update();
+    }
+  });
+};
+}
+
+
+function init_charts_home(type,data) {
         console.log('run_charts  typeof [' + typeof (Chart) + ']');
         if( typeof (Chart) === 'undefined'){ return; }
          console.log('init_charts');
@@ -217,34 +265,6 @@
       if ($('#lineChart').length ){
 
         var ctx = document.getElementById("lineChart");
-        // var lineChart = new Chart(ctx, {
-        // type: 'line',
-        // data: {
-        //   labels: ["January", "February", "March", "April", "May", "June", "July"],
-        //   datasets: [{
-        //   label: "My First dataset",
-        //   backgroundColor: "rgba(38, 185, 154, 0.31)",
-        //   borderColor: "rgba(38, 185, 154, 0.7)",
-        //   pointBorderColor: "rgba(38, 185, 154, 0.7)",
-        //   pointBackgroundColor: "rgba(38, 185, 154, 0.7)",
-        //   pointHoverBackgroundColor: "#fff",
-        //   pointHoverBorderColor: "rgba(220,220,220,1)",
-        //   pointBorderWidth: 1,
-        //   data: [31, 74, 6, 39, 20, 85, 7]
-        //   }, {
-        //   label: "My Second dataset",
-        //   backgroundColor: "rgba(3, 88, 106, 0.3)",
-        //   borderColor: "rgba(3, 88, 106, 0.70)",
-        //   pointBorderColor: "rgba(3, 88, 106, 0.70)",
-        //   pointBackgroundColor: "rgba(3, 88, 106, 0.70)",
-        //   pointHoverBackgroundColor: "#fff",
-        //   pointHoverBorderColor: "rgba(151,187,205,1)",
-        //   pointBorderWidth: 1,
-        //   data: [82, 23, 66, 9, 99, 4, 2]
-        //   }]
-        // },
-        // });
-
 
 var myChart = new Chart(ctx, {
   type: 'line',
@@ -276,7 +296,7 @@ var myChart = new Chart(ctx, {
   options: {
     responsive: true,
     title: {
-      display: true,
+      display: false,
       text: "Dynamically Update Chart Via Ajax Requests",
     },
     legend: {
@@ -293,11 +313,7 @@ var myChart = new Chart(ctx, {
   }
 });
 function getRandomIntInclusive(min, max) {
-  // min = Math.ceil(min);
-  // max = Math.floor(max);
-  // return Math.floor(Math.random() * (max - min + 1)) + min;
-
-   var arr = [];
+var arr = [];
 for (var i = 0, l = 20; i < l; i++) {
     arr.push(Math.random() * (max - min + 1))
 }
@@ -331,12 +347,16 @@ var getDataline = function() {
   });
 };
 
-function updatetime(type){
 
-  alert("aaa")
-}
 // get new data every 3 seconds
-setInterval(getDataline, 5000);
+var getDataInterval = setInterval(getDataline, 5000);
+$("body").on( "click", ".lineStatus", function() {
+  clearInterval(getDataInterval);
+  var link_name = $(this).attr('data-time')
+  $( ".lineStatus" ).removeClass( "active_tab" );
+  $(this).addClass( "active_tab" );
+   getDataInterval = setInterval(getDataline,link_name*1000);
+});
       }
 
       }else if(type=='mybarChart'){
@@ -393,7 +413,7 @@ var myChart = new Chart(ctx_live, {
   options: {
     responsive: true,
     title: {
-      display: true,
+      display: false,
       text: "Dynamically Update Chart Via Ajax Requests",
     },
     legend: {
@@ -457,8 +477,9 @@ var tempData={
 
         console.log(tempData)
          init_charts_home('mybarChart',tempData);
-          init_charts_home('lineChart',tempData);
-
+         init_charts_home('lineChart',tempData);
+         init_recent_table('mybarChart',tempData);
+         init_active_table('lineChart',tempData);
 
 
 });
@@ -480,5 +501,9 @@ function getAjax(url){
 }
 
 </script>
-
+<style>
+.active_tab{
+  color: #00afaa !important;
+}
+  </style>
           @endsection
