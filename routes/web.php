@@ -30,11 +30,12 @@ Route::group([], function() {
 });
 
 
-
-Route::get('my-home', 'UserController@myHome');
-Route::get('my-users', 'UserController@myUsers');
+Route::get('/', 'UserController@login');
 Route::get('login', 'UserController@login');
-Route::get('logout', 'UserController@logout');
+
+    Route::get('my-home', 'UserController@myHome');
+    Route::get('my-users', 'UserController@myUsers');
+    Route::get('logout', 'UserController@logout');
 
 /*
   |--------------------------------------------------------------------------

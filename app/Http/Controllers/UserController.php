@@ -9,10 +9,17 @@ use Session;
 
 class UserController extends Controller {
 
+    public function __construct()
+    {
+        if (empty(session('Response'))) {
+            return view('login');
+        } 
+    }
+
     public function login(Request $request) {
         try {
 
-            if (!($request->session())) {
+            if (empty(session('Response'))) {
                 return view('login');
             } else {
                 return redirect('my-home');
@@ -32,8 +39,11 @@ class UserController extends Controller {
 
      */
     public function myHome() {
-
-        return view('myHome');
+        if (empty(session('Response'))) {
+            return redirect('login');
+        } else {
+            return view('myHome');
+        }
     }
 
     /**
