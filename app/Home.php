@@ -71,20 +71,20 @@ class Home extends Model
     
     public static function topActiveNumbers() {
         try {
-//            SELECT TOP 10 COUNT(*) AS Calls, Campaigns.Name,Campaigns.Campaign FROM HangUps INNER JOIN Campaigns ON HangUps.CampaignID = Campaigns.CampaignID
-//where hangupdate <= '#dateformat(now(), 'MM/DD/YYYY')# #timeformat(now(), 'hh:mm:ss tt')#' and hangupdate >= '#dateformat(now(), 'MM/DD/YYYY')# 12:00 AM'
-//  and      Companyid =  #Getauth.CompanyID#
-//GROUP BY Campaigns.Name,Campaigns.Campaign ORDER BY COUNT(*) DESC
-                    echo "<pre>";
             $current_time = date('Y-m-d H:i:s');
-            
             $hrs_calls = [];
-            echo $sql = "SELECT TOP 10 COUNT(*) AS Calls, Campaigns.Name,Campaigns.Campaign  FROM hangups HangUps INNER JOIN campaigns Campaigns ON HangUps.CampaignID = Campaigns.CampaignID"
+            $sql = "SELECT TOP 10 COUNT(*) AS Calls, Campaigns.Name,Campaigns.Campaign  FROM hangups HangUps INNER JOIN campaigns Campaigns ON HangUps.CampaignID = Campaigns.CampaignID"
                     . " where CompanyID = '". session('user_info')->CompanyID ."' and hangupdate <= '".$current_time."' and hangupdate >= '".date('Y-m-d'). " 12:00 AM' GROUP BY Campaigns.Name,Campaigns.Campaign ORDER BY COUNT(*) DESC";
-            die;
             $info = DB::select($sql);
-            
-            return $info;
+            $arr = [];
+            foreach ($info as $key => $value) {
+                $arr[$key]['Calls'] = $value->Calls;
+                $arr[$key]['Name'] = $value->Name;
+                $query = "SELECT top 1 Hangupdate FROM hangups where CompanyID = '". session('user_info')->CompanyID ."' and campaign IN ('".$value->Campaign."') and hangupdate < '".$current_time."' ORDER BY hangupdate desc";
+                $info = DB::select($query);
+                $arr[$key]['LastCall'] = date("m/d h:i:s A", strtotime($info[0]->Hangupdate));
+            }
+            return $arr;
         } catch (Exception $ex) {
             throw $ex;
         }
