@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/var/www/html/report/app/Http/Controllers/UserController.php</file>
+            <file>file:/var/www/html/report/resources/views/login.blade.php</file>
+            <file>file:/var/www/html/report/.env</file>
+            <file>file:/var/www/html/report/app/ErrorCode.php</file>
+            <file>file:/var/www/html/report/resources/views/theme/header.blade.php</file>
+            <file>file:/var/www/html/report/resources/views/theme/login.blade.php</file>
+            <file>file:/var/www/html/report/config/app.php</file>
+            <file>file:/var/www/html/report/resources/views/myHome.blade.php</file>
+            <file>file:/var/www/html/report/routes/web.php</file>
+            <file>file:/var/www/html/report/resources/views/theme/default.blade.php</file>
+            <file>file:/var/www/html/report/config/database.php</file>
+        </group>
+    </open-files>
+</project-private>
