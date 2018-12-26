@@ -24,7 +24,7 @@ Route::group([], function() {
     Route::get('login', 'UserController@login')->name('login');
 
     Route::get('/', 'UserController@login');
-    
+
     Route::post('/login','UserController@loginApi');
 
 });
@@ -32,8 +32,20 @@ Route::group([], function() {
 
 
 Route::get('my-home', 'UserController@myHome');
-
 Route::get('my-users', 'UserController@myUsers');
-
 Route::get('login', 'UserController@login');
 Route::get('logout', 'UserController@logout');
+
+/*
+  |--------------------------------------------------------------------------
+  | Report  Routes
+  |--------------------------------------------------------------------------
+ */
+
+Route::group(['namespace' => 'Web'], function() {
+
+    Route::get('exe-summary', 'Report\ReportController@exeSummary');
+    Route::get('network-summary', 'Report\ReportController@networkCallSummary');
+    Route::get('statical-summary', 'Report\ReportController@staticalSummary');
+
+});

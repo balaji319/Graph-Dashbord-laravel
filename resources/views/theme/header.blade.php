@@ -80,14 +80,14 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-home"></i> Home </a>
+                  <li><a href="{{ url('/my-home') }}" ><i class="fa fa-home"></i> Home </a>
 
                   </li>
                   <li><a><i class="fa fa-edit"></i> Reports <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                       <li><a href="#">Executive Call Summary</a></li>
-                        <li><a href="#">Network Call Summary</a></li>
-                        <li><a href="#">Statistical History</a></li>
+                       <li><a href="{{ url('/exe-summary') }}">Executive Call Summary</a></li>
+                        <li><a href="{{ url('/network-summary') }}">Network Call Summary</a></li>
+                        <li><a href="{{ url('/statical-summary') }}" >Statistical History</a></li>
                         <li><a href="#">Website Summary</a></li>
                         <li><a href="#">Top Cities</a></li>
                         <li><a href="#">Top Countries </a></li>
