@@ -68,4 +68,25 @@ class Home extends Model
             throw $ex;
         }
     }
+    
+    public static function topActiveNumbers() {
+        try {
+//            SELECT TOP 10 COUNT(*) AS Calls, Campaigns.Name,Campaigns.Campaign FROM HangUps INNER JOIN Campaigns ON HangUps.CampaignID = Campaigns.CampaignID
+//where hangupdate <= '#dateformat(now(), 'MM/DD/YYYY')# #timeformat(now(), 'hh:mm:ss tt')#' and hangupdate >= '#dateformat(now(), 'MM/DD/YYYY')# 12:00 AM'
+//  and      Companyid =  #Getauth.CompanyID#
+//GROUP BY Campaigns.Name,Campaigns.Campaign ORDER BY COUNT(*) DESC
+                    echo "<pre>";
+            $current_time = date('Y-m-d H:i:s');
+            
+            $hrs_calls = [];
+            echo $sql = "SELECT TOP 10 COUNT(*) AS Calls, Campaigns.Name,Campaigns.Campaign  FROM hangups HangUps INNER JOIN campaigns Campaigns ON HangUps.CampaignID = Campaigns.CampaignID"
+                    . " where CompanyID = '". session('user_info')->CompanyID ."' and hangupdate <= '".$current_time."' and hangupdate >= '".date('Y-m-d'). " 12:00 AM' GROUP BY Campaigns.Name,Campaigns.Campaign ORDER BY COUNT(*) DESC";
+            die;
+            $info = DB::select($sql);
+            
+            return $info;
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
 }
