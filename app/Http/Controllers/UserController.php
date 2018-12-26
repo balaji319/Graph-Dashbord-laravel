@@ -11,8 +11,7 @@ class UserController extends Controller {
 
     public function login(Request $request) {
         try {
-
-            if (!($request->session())) {
+            if (empty(session('user_info'))) {
                 return view('login');
             } else {
                 return redirect('my-home');
@@ -33,7 +32,11 @@ class UserController extends Controller {
      */
     public function myHome() {
 
-        return view('myHome');
+        if (!empty(session('user_info'))) {
+            return view('myHome');
+        } else {
+            return redirect('login');
+        }
     }
 
     /**
@@ -58,10 +61,10 @@ class UserController extends Controller {
                 'Password' => 'required',
                 'PersonalCode' => 'required',
             ]);
-
             $response = User::login($input);
             if (!empty($response)) {
-                $request->session()->put('Responce', $response[0]);
+                session(['user_info'=> $response[0]]);
+                print_r(session('user_info'));
                 return redirect('/my-home');
             } else {
                 $error[] = 'Something went wrong';

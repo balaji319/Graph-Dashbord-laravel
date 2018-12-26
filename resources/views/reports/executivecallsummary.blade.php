@@ -153,6 +153,214 @@
 
 
                                 <tbody>
+                                        <tr>
+                                                <td class=" ">Tue</td>
+                                                <td class=" ">Today</td>
+                                                <td class=" ">1411 </td>
+                                                <td class=" ">827</td>
+                                                <td class=" ">584</td>
+                                                <td >58.61%</td>
+                                                <td class=" ">41.39%</td>
+                                                <td class=" ">In Process </td>
+                                                <td class=" ">In Process</td>
+                                                <td class=" ">n Process</td>
+                                                <td >	In Process</td>
+                                          </tr>
+                                          <tr>
+                                                <td class=" ">Tue</td>
+                                                <td class=" ">Today</td>
+                                                <td class=" ">1411 </td>
+                                                <td class=" ">827</td>
+                                                <td class=" ">584</td>
+                                                <td >58.61%</td>
+                                                <td class=" ">41.39%</td>
+                                                <td class=" ">In Process </td>
+                                                <td class=" ">In Process</td>
+                                                <td class=" ">n Process</td>
+                                                <td >	In Process</td>
+                                          </tr>
+                                          <tr>
+                                                <td class=" ">Tue</td>
+                                                <td class=" ">Today</td>
+                                                <td class=" ">1411 </td>
+                                                <td class=" ">827</td>
+                                                <td class=" ">584</td>
+                                                <td >58.61%</td>
+                                                <td class=" ">41.39%</td>
+                                                <td class=" ">In Process </td>
+                                                <td class=" ">In Process</td>
+                                                <td class=" ">n Process</td>
+                                                <td >	In Process</td>
+                                          </tr>
+                                          <tr>
+                                                <td class=" ">Tue</td>
+                                                <td class=" ">Today</td>
+                                                <td class=" ">1411 </td>
+                                                <td class=" ">827</td>
+                                                <td class=" ">584</td>
+                                                <td >58.61%</td>
+                                                <td class=" ">41.39%</td>
+                                                <td class=" ">In Process </td>
+                                                <td class=" ">In Process</td>
+                                                <td class=" ">n Process</td>
+                                                <td >	In Process</td>
+                                          </tr>
+                                          <tr>
+                                                <td class=" ">Tue</td>
+                                                <td class=" ">Today</td>
+                                                <td class=" ">1411 </td>
+                                                <td class=" ">827</td>
+                                                <td class=" ">584</td>
+                                                <td >58.61%</td>
+                                                <td class=" ">41.39%</td>
+                                                <td class=" ">In Process </td>
+                                                <td class=" ">In Process</td>
+                                                <td class=" ">n Process</td>
+                                                <td >	In Process</td>
+                                          </tr>
+                                          <tr>
+                                                <td class=" ">Tue</td>
+                                                <td class=" ">Today</td>
+                                                <td class=" ">1411 </td>
+                                                <td class=" ">827</td>
+                                                <td class=" ">584</td>
+                                                <td >58.61%</td>
+                                                <td class=" ">41.39%</td>
+                                                <td class=" ">In Process </td>
+                                                <td class=" ">In Process</td>
+                                                <td class=" ">n Process</td>
+                                                <td >	In Process</td>
+                                          </tr>
+                                          <tr>
+                                                <td class=" ">Tue</td>
+                                                <td class=" ">Today</td>
+                                                <td class=" ">1411 </td>
+                                                <td class=" ">827</td>
+                                                <td class=" ">584</td>
+                                                <td >58.61%</td>
+                                                <td class=" ">41.39%</td>
+                                                <td class=" ">In Process </td>
+                                                <td class=" ">In Process</td>
+                                                <td class=" ">n Process</td>
+                                                <td >	In Process</td>
+                                          </tr>
+                                          <tr>
+                                                <td class=" ">Tue</td>
+                                                <td class=" ">Today</td>
+                                                <td class=" ">1411 </td>
+                                                <td class=" ">827</td>
+                                                <td class=" ">584</td>
+                                                <td >58.61%</td>
+                                                <td class=" ">41.39%</td>
+                                                <td class=" ">In Process </td>
+                                                <td class=" ">In Process</td>
+                                                <td class=" ">n Process</td>
+                                                <td >	In Process</td>
+                                          </tr>
+                                          <tr>
+                                                <td class=" ">Tue</td>
+                                                <td class=" ">Today</td>
+                                                <td class=" ">1411 </td>
+                                                <td class=" ">827</td>
+                                                <td class=" ">584</td>
+                                                <td >58.61%</td>
+                                                <td class=" ">41.39%</td>
+                                                <td class=" ">In Process </td>
+                                                <td class=" ">In Process</td>
+                                                <td class=" ">n Process</td>
+                                                <td >	In Process</td>
+                                          </tr>
+                                          <tr>
+                                                <td class=" ">Tue</td>
+                                                <td class=" ">Today</td>
+                                                <td class=" ">1411 </td>
+                                                <td class=" ">827</td>
+                                                <td class=" ">584</td>
+                                                <td >58.61%</td>
+                                                <td class=" ">41.39%</td>
+                                                <td class=" ">In Process </td>
+                                                <td class=" ">In Process</td>
+                                                <td class=" ">n Process</td>
+                                                <td >	In Process</td>
+                                          </tr>
+                                          <tr>
+                                                <td class=" ">Tue</td>
+                                                <td class=" ">Today</td>
+                                                <td class=" ">1411 </td>
+                                                <td class=" ">827</td>
+                                                <td class=" ">584</td>
+                                                <td >58.61%</td>
+                                                <td class=" ">41.39%</td>
+                                                <td class=" ">In Process </td>
+                                                <td class=" ">In Process</td>
+                                                <td class=" ">n Process</td>
+                                                <td >	In Process</td>
+                                          </tr>
+                                          <tr>
+                                                <td class=" ">Tue</td>
+                                                <td class=" ">Today</td>
+                                                <td class=" ">1411 </td>
+                                                <td class=" ">827</td>
+                                                <td class=" ">584</td>
+                                                <td >58.61%</td>
+                                                <td class=" ">41.39%</td>
+                                                <td class=" ">In Process </td>
+                                                <td class=" ">In Process</td>
+                                                <td class=" ">n Process</td>
+                                                <td >	In Process</td>
+                                          </tr>
+                                          <tr>
+                                                <td class=" ">Tue</td>
+                                                <td class=" ">Today</td>
+                                                <td class=" ">1411 </td>
+                                                <td class=" ">827</td>
+                                                <td class=" ">584</td>
+                                                <td >58.61%</td>
+                                                <td class=" ">41.39%</td>
+                                                <td class=" ">In Process </td>
+                                                <td class=" ">In Process</td>
+                                                <td class=" ">n Process</td>
+                                                <td >	In Process</td>
+                                          </tr>
+                                          <tr>
+                                                <td class=" ">Tue</td>
+                                                <td class=" ">Today</td>
+                                                <td class=" ">1411 </td>
+                                                <td class=" ">827</td>
+                                                <td class=" ">584</td>
+                                                <td >58.61%</td>
+                                                <td class=" ">41.39%</td>
+                                                <td class=" ">In Process </td>
+                                                <td class=" ">In Process</td>
+                                                <td class=" ">n Process</td>
+                                                <td >	In Process</td>
+                                          </tr>
+                                          <tr>
+                                                <td class=" ">Tue</td>
+                                                <td class=" ">Today</td>
+                                                <td class=" ">1411 </td>
+                                                <td class=" ">827</td>
+                                                <td class=" ">584</td>
+                                                <td >58.61%</td>
+                                                <td class=" ">41.39%</td>
+                                                <td class=" ">In Process </td>
+                                                <td class=" ">In Process</td>
+                                                <td class=" ">n Process</td>
+                                                <td >	In Process</td>
+                                          </tr>
+                                          <tr>
+                                                <td class=" ">Tue</td>
+                                                <td class=" ">Today</td>
+                                                <td class=" ">1411 </td>
+                                                <td class=" ">827</td>
+                                                <td class=" ">584</td>
+                                                <td >58.61%</td>
+                                                <td class=" ">41.39%</td>
+                                                <td class=" ">In Process </td>
+                                                <td class=" ">In Process</td>
+                                                <td class=" ">n Process</td>
+                                                <td >	In Process</td>
+                                          </tr>
                                   <tr>
                                         <td class=" ">Tue</td>
                                         <td class=" ">Today</td>
@@ -215,9 +423,27 @@
               </div>
 </div>
 
-<script src="{!! asset('vendors/datatables.net-scroller/js/dataTables.scroller.min.js') !!}"></script>
-<script src="{!! asset('vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js') !!}"></script>
-<script src="{!! asset('vendors/datatables.net-responsive/js/dataTables.responsive.min.js') !!}"></script>
-<script src="{!! asset('vendors/datatables.net-keytable/js/dataTables.keyTable.min.js') !!}"></script>
-<script src="{!! asset('vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') !!}"></script>
+  <!-- Datatables -->
+  <script src="{!! asset('vendors/jquery/dist/jquery.min.js') !!}"></script>
+  <script src="{!! asset('vendors/datatables.net/js/jquery.dataTables.min.js') !!}"></script>
+  <script src="{!! asset('vendors/datatables.net-buttons/js/buttons.print.min.js') !!}"></script>
+  <script src="{!! asset('vendors/datatables.net-buttons/js/dataTables.buttons.min.js') !!}"></script>
+
+  <script src="{!! asset('vendors/datatables.net-buttons/js/buttons.flash.min.js') !!}"></script>
+  <script src="{!! asset('vendors/datatables.net-buttons/js/buttons.html5.min.js') !!}"></script>
+  <script src="{!! asset('vendors/datatables.net-buttons/js/buttons.print.min.js') !!}"></script>
+  <script src="{!! asset('vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') !!}"></script>
+
+  <script src="{!! asset('vendors/datatables.net-keytable/js/dataTables.keyTable.min.js') !!}"></script>
+  <script src="{!! asset('vendors/datatables.net-responsive/js/dataTables.responsive.min.js') !!}"></script>
+  <script src="{!! asset('vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js') !!}"></script>
+  <script src="{!! asset('vendors/datatables.net-scroller/js/dataTables.scroller.min.js') !!}"></script>
+
+  <script src="{!! asset('vendors/jszip/dist/jszip.min.js') !!}"></script>
+  <script src="{!! asset('vendors/pdfmake/build/pdfmake.min.js') !!}"></script>
+  <script src="{!! asset('vendors/pdfmake/build/vfs_fonts.js') !!}"></script>
+
+
+
+
 @endsection

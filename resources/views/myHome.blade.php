@@ -269,7 +269,7 @@ function init_charts_home(type,data) {
 var myChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    labels: [],
     datasets:  [{
           label: "My First dataset",
           backgroundColor: "rgba(38, 185, 154, 0.31)",
@@ -279,7 +279,7 @@ var myChart = new Chart(ctx, {
           pointHoverBackgroundColor: "#fff",
           pointHoverBorderColor: "rgba(220,220,220,1)",
           pointBorderWidth: 1,
-          data: getRandomIntInclusive(-1,2)
+          data: []
           }, {
           label: "My Second dataset",
           backgroundColor: "rgba(3, 88, 106, 0.3)",
@@ -289,7 +289,7 @@ var myChart = new Chart(ctx, {
           pointHoverBackgroundColor: "#fff",
           pointHoverBorderColor: "rgba(151,187,205,1)",
           pointBorderWidth: 1,
-          data: getRandomIntInclusive(-1,2)
+          data: []
           }]
 
   },
@@ -331,15 +331,15 @@ postId =0;
 // logic to get new data
 var getDataline = function() {
   $.ajax({
-    url: 'api/my-bar',
+    url: '/advert-spikes-past-hour',
     success: function(data) {
       // process your data to pull out what you plan to use to update the chart
       // e.g. new label and a new data point
       console.log("aaaaaa");
-      console.log(myChart.data)
+      console.log(data)
       // add new label and data point to chart's underlying data structures
       //myChart.data.labels.push("Post " + postId++);
-      myChart.data.datasets[0].data=getRandomIntInclusive(-1,2);
+      myChart.data.labels=["January", "February", "March", "April", "May", "June", "July"];
       myChart.data.datasets[1].data=getRandomIntInclusive(-1,2);
       // re-render the chart
       myChart.update();
@@ -347,7 +347,7 @@ var getDataline = function() {
   });
 };
 
-
+getDataline();
 // get new data every 3 seconds
 var getDataInterval = setInterval(getDataline, 5000);
 $("body").on( "click", ".lineStatus", function() {

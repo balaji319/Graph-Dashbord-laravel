@@ -50,4 +50,19 @@ class HomeController extends Controller
         }
     }
 
+    public function mostRecentCalls(Request $request) {
+        try {
+            print_r( session('Responce')->CompanyID);
+            $response = User::mostRecentCalls();
+            return response()->json([
+                'status' => 200,
+                'message' => 'Success',
+                'data' => $response,
+            ],200);
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
+
 }
+

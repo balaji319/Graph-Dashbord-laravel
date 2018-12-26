@@ -16,12 +16,12 @@ class Home extends Model
             $current_time = date('Y-m-d H:i:s');
             $adv_spikes = [];
             for($i=$minutes_in; $i <= 60; $i=$i+2 ){
-               $sql = "SELECT count(*) as Calls FROM hangups where DATEPART(minute, hangupdate) = '".$i."' and hangupdate >= '".$last_hr_time."' and CompanyID = '". session('Responce')->CompanyID ."'";
+               $sql = "SELECT count(*) as Calls FROM hangups where DATEPART(minute, hangupdate) = '".$i."' and hangupdate >= '".$last_hr_time."' and CompanyID = '". session('user_info')->CompanyID ."'";
                $info = DB::select($sql);
                $adv_spikes[] = ['min'=>$i,'calls'=>$info[0]->Calls];
             }
             for($i=0; $i < $minutes_in_minus; $i=$i+2 ){
-               $sql = "SELECT count(*) as Calls FROM hangups where DATEPART(minute, hangupdate) = '".$i."' and hangupdate >= '".$last_hr_time."' and CompanyID = '". session('Responce')->CompanyID ."'";
+               $sql = "SELECT count(*) as Calls FROM hangups where DATEPART(minute, hangupdate) = '".$i."' and hangupdate >= '".$last_hr_time."' and CompanyID = '". session('user_info')->CompanyID ."'";
                $info = DB::select($sql);
                $adv_spikes[] = ['min'=>$i,'calls'=>$info[0]->Calls];
             }
@@ -37,7 +37,7 @@ class Home extends Model
             $current_time = date('Y-m-d H:i:s');
             $hrs_calls = [];
             for($i=0; $i <= 23; $i++ ){
-               $sql = "SELECT count(*) as Calls FROM hangups where DATEPART(hour, hangupdate) = '".$i."' and hangupdate >= '".date('Y-m-d')."' and CompanyID = '". session('Responce')->CompanyID ."' and hangupdate < '".$current_time."'";
+               $sql = "SELECT count(*) as Calls FROM hangups where DATEPART(hour, hangupdate) = '".$i."' and hangupdate >= '".date('Y-m-d')."' and CompanyID = '". session('user_info')->CompanyID ."' and hangupdate < '".$current_time."'";
                $info = DB::select($sql);
                $hrs_calls[] = ['hrs'=>$i,'calls'=>$info[0]->Calls];
             }
