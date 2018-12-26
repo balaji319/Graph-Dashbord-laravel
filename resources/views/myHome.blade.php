@@ -24,8 +24,8 @@ $var_date = date("D - M. d Y", $unixTime);  ?>
                       <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                         <ul class="dropdown-menu" role="menu">
-                          <li><a href="#" class="lineStatus" data-time='1' >Live </a>
-                          </li>
+                          {{-- <li><a href="#" class="lineStatus" data-time='1' >Live </a>
+                          </li> --}}
                           <li><a href="#"  class="lineStatus " data-time='5' >5 Second</a>
                           </li>
                           <li><a href="#"  class="lineStatus active_tab" data-time='15'>15 Second </a>
@@ -44,7 +44,9 @@ $var_date = date("D - M. d Y", $unixTime);  ?>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <!-- <div id='lineChart_load'><i>loading...</i></div> -->
+                      <div id="loadingadvert"  class="loading-imageId" >
+                          <img id="loading-image"  class="loading-image"  src="{!! asset('images/ajax-loader.gif') !!}"  alt="Loading..." />
+                      </div>
                     <canvas id="lineChart"></canvas>
                   </div>
                 </div>
@@ -72,6 +74,9 @@ $var_date = date("D - M. d Y", $unixTime);  ?>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
+                      <div  class="loading-imageId" id="loadingbar" >
+                          <img   class="loading-image"  src="{!! asset('images/ajax-loader.gif') !!}"  alt="Loading..." />
+                      </div>
                     <canvas id="mybarChart"></canvas>
                   </div>
                 </div>
@@ -109,7 +114,7 @@ $var_date = date("D - M. d Y", $unixTime);  ?>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <table class="table table-hover">
+                    <table class="table table-hover" id="records_table">
                       <thead>
                         <tr>
                           <th>Station</th>
@@ -118,28 +123,10 @@ $var_date = date("D - M. d Y", $unixTime);  ?>
                           <th>Complete?</th>
                         </tr>
                       </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>@fat</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td>Larry</td>
-                          <td>the Bird</td>
-                          <td>@twitter</td>
-                        </tr>
+                      <tbody >
+
                       </tbody>
                     </table>
-
                   </div>
                 </div>
               </div>
@@ -214,22 +201,35 @@ function init_recent_table(min, max) {
 // logic to get new data
 var getDataRecentCalls = function() {
   $.ajax({
-    url: 'api/my-bar',
-    success: function(data) {
-      // process your data to pull out what you plan to use to update the chart
-      // e.g. new label and a new data point
-      console.log("aaaaaa");
-      console.log(myChart.data)
-      // add new label and data point to chart's underlying data structures
-      //myChart.data.labels.push("Post " + postId++);
-      myChart.data.datasets[0].data=getRandomIntInclusive(-1,2);
-      myChart.data.datasets[1].data=getRandomIntInclusive(-1,2);
-      // re-render the chart
-      myChart.update();
+    url: '/most-recent-calls',
+    success: function(response) {
+      var trHTML = '';
+      $.each(response.data, function(i, item) {
+        var strType = item.HangUpCount==1 ? 'No' :'Yes';
+        trHTML += '<tr><td>' + item.Name + '</td><td>' + item.CallerID + '</td><td>' + convertTime(item.CallDuration) + '</td><td>' + strType + '</td></tr>';
+    });
+    $('#records_table').append(trHTML);
+
     }
   });
 };
+getDataRecentCalls();
 }
+
+
+function convertTime(sec) {
+    var hours = Math.floor(sec/3600);
+    (hours >= 1) ? sec = sec - (hours*3600) : hours = '00';
+    var min = Math.floor(sec/60);
+    (min >= 1) ? sec = sec - (min*60) : min = '00';
+    (sec < 1) ? sec='00' : void 0;
+
+    (min.toString().length == 1) ? min = '0'+min : void 0;
+    (sec.toString().length == 1) ? sec = '0'+sec : void 0;
+
+    return hours+':'+min+':'+sec;
+}
+
 
 function init_active_table(min, max) {
   // logic to get new data
@@ -263,178 +263,159 @@ function init_charts_home(type,data) {
       if(type=='lineChart'){
         // Line chart
       if ($('#lineChart').length ){
+           var ctx = document.getElementById("lineChart");
+            var myChart = new Chart(ctx, {
+              type: 'line',
+              data: {
+                labels: [],
+                datasets:  [{
+                      label: "My First dataset",
+                      backgroundColor: "rgba(38, 185, 154, 0.31)",
+                      borderColor: "rgba(38, 185, 154, 0.7)",
+                      pointBorderColor: "rgba(38, 185, 154, 0.7)",
+                      pointBackgroundColor: "rgba(38, 185, 154, 0.7)",
+                      pointHoverBackgroundColor: "#fff",
+                      pointHoverBorderColor: "rgba(220,220,220,1)",
+                      pointBorderWidth: 1,
+                      data: []
+                      }, {
+                      label: "My Second dataset",
+                      backgroundColor: "rgba(3, 88, 106, 0.3)",
+                      borderColor: "rgba(3, 88, 106, 0.70)",
+                      pointBorderColor: "rgba(3, 88, 106, 0.70)",
+                      pointBackgroundColor: "rgba(3, 88, 106, 0.70)",
+                      pointHoverBackgroundColor: "#fff",
+                      pointHoverBorderColor: "rgba(151,187,205,1)",
+                      pointBorderWidth: 1,
+                      data: []
+                      }]
 
-        var ctx = document.getElementById("lineChart");
-
-var myChart = new Chart(ctx, {
-  type: 'line',
-  data: {
-    labels: [],
-    datasets:  [{
-          label: "My First dataset",
-          backgroundColor: "rgba(38, 185, 154, 0.31)",
-          borderColor: "rgba(38, 185, 154, 0.7)",
-          pointBorderColor: "rgba(38, 185, 154, 0.7)",
-          pointBackgroundColor: "rgba(38, 185, 154, 0.7)",
-          pointHoverBackgroundColor: "#fff",
-          pointHoverBorderColor: "rgba(220,220,220,1)",
-          pointBorderWidth: 1,
-          data: []
-          }, {
-          label: "My Second dataset",
-          backgroundColor: "rgba(3, 88, 106, 0.3)",
-          borderColor: "rgba(3, 88, 106, 0.70)",
-          pointBorderColor: "rgba(3, 88, 106, 0.70)",
-          pointBackgroundColor: "rgba(3, 88, 106, 0.70)",
-          pointHoverBackgroundColor: "#fff",
-          pointHoverBorderColor: "rgba(151,187,205,1)",
-          pointBorderWidth: 1,
-          data: []
-          }]
-
-  },
-  options: {
-    responsive: true,
-    title: {
-      display: false,
-      text: "Dynamically Update Chart Via Ajax Requests",
-    },
-    legend: {
-      display: false
-    },
-    scales: {
-      yAxes: [{
-        ticks: {
-                  min:0,
-                  stepSize: 0.5,
+              },
+              options: {
+                responsive: true,
+                title: {
+                  display: false,
+                  text: "Dynamically Update Chart Via Ajax Requests",
+                },
+                legend: {
+                  display: false
+                },
+                scales: {
+                  yAxes: [{
+                    ticks: {
+                              min:0,
+                              stepSize: 0.5,
+                          }
+                  }]
+                }
               }
-      }]
-    }
-  }
-});
-function getRandomIntInclusive(min, max) {
-var arr = [];
-for (var i = 0, l = 20; i < l; i++) {
-    arr.push(Math.random() * (max - min + 1))
-}
-return arr;
-}
+            });
+            function getRandomIntInclusive(min, max) {
+            var arr = [];
+            for (var i = 0, l = 20; i < l; i++) {
+                arr.push(Math.random() * (max - min + 1))
+            }
+            return arr;
+            }
 
-function getRandomIntInclusiveArray(len) {
-  var arr = [];
-for (var i = 0, l = len; i < l; i++) {
-    arr.push(Math.round(Math.random() * l))
-}
-return arr;
-}
-postId =0;
-// logic to get new data
-var getDataline = function() {
-  $.ajax({
-    url: '/advert-spikes-past-hour',
-    success: function(data) {
+            function getRandomIntInclusiveArray(len) {
+              var arr = [];
+            for (var i = 0, l = len; i < l; i++) {
+                arr.push(Math.round(Math.random() * l))
+            }
+            return arr;
+            }
+            postId =0;
+            // logic to get new data
+            var getDataline = function() {
+              $.ajax({
+                url: '/advert-spikes-past-hour',
+                success: function(data) {
+                  $('#loadingadvert').hide();
+                  myChart.data.labels=data.data.min;
+                  myChart.data.datasets[1].data=data.data.count_arr;
+                  // re-render the chart
+                  myChart.update();
+                }
+              });
+            };
 
-      myChart.data.labels=data.data.min;
-      myChart.data.datasets[1].data=data.data.count_arr;
-      // re-render the chart
-      myChart.update();
-    }
-  });
-};
-
-getDataline();
-// get new data every 3 seconds
-var getDataInterval = setInterval(getDataline, 15000);
-$("body").on( "click", ".lineStatus", function() {
-  clearInterval(getDataInterval);
-  var link_name = $(this).attr('data-time')
-  $( ".lineStatus" ).removeClass( "active_tab" );
-  $(this).addClass( "active_tab" );
-   getDataInterval = setInterval(getDataline,link_name*1000);
-});
+            getDataline();
+            // get new data every 3 seconds
+            var getDataInterval = setInterval(getDataline, 15000);
+            $("body").on( "click", ".lineStatus", function() {
+              clearInterval(getDataInterval);
+              var link_name = $(this).attr('data-time')
+              $( ".lineStatus" ).removeClass( "active_tab" );
+              $(this).addClass( "active_tab" );
+              getDataInterval = setInterval(getDataline,link_name*1000);
+            });
       }
 
       }else if(type=='mybarChart'){
-
         // Bar chart
+         if ($('#mybarChart').length ){
 
-      if ($('#mybarChart').length ){
-
-        // var ctx_live = document.getElementById("mybarChart");
-        // var mybarChart = new Chart(ctx_live, {
-        // type: 'bar',
-        // data: data,
-
-        // options: {
-        //   scales: {
-        //   yAxes: [{
-        //     ticks: {
-        //     beginAtZero: true
-        //     }
-        //   }]
-        //   }
-        // }
-        // });
-
-
-function getRandomIntInclusiveArray(len) {
-  var arr = [];
-for (var i = 0, l = len; i < l; i++) {
-    arr.push(Math.round(Math.random() * l))
-}
-return arr;
-}
-// create initial empty chart
-var ctx_live = document.getElementById("mybarChart");
-var labelArray = [];
-for (var i = 0, l = 24; i < l; i++) {
-  labelArray.push(i)
-}
-var myChart = new Chart(ctx_live, {
-  type: 'bar',
-  data: {
-    labels: labelArray,
-    datasets: [{
-          label: '# of Votes',
-          backgroundColor: "#26B99A",
-          data: []
-          }]
-
-  },
-  options: {
-    responsive: true,
-    title: {
-      display: false,
-      text: "Dynamically Update Chart Via Ajax Requests",
-    },
-    legend: {
-      display: false
-    },
-    scales: {
-      yAxes: [{
-
-               ticks: {
-                  min: 0,
-                  stepSize: 10,
+              function getRandomIntInclusiveArray(len) {
+                var arr = [];
+              for (var i = 0, l = len; i < l; i++) {
+                  arr.push(Math.round(Math.random() * l))
               }
-      }]
-    }
+              return arr;
+              }
+              // create initial empty chart
+              var ctx_live = document.getElementById("mybarChart");
+              var labelArray = [];
+              for (var i = 0, l = 24; i < l; i++) {
+                labelArray.push(i)
+              }
+              var myChart = new Chart(ctx_live, {
+                type: 'bar',
+                data: {
+                  labels: labelArray,
+                  datasets: [{
+                        label: '# of Votes',
+                        backgroundColor: "#b5ced3",
+                        data: []
+                        }]
+                },
+                options: {
+                  responsive: true,
+                  title: {
+                    display: false,
+                    text: "Dynamically Update Chart Via Ajax Requests",
+                  },
+                  legend: {
+                    display: false
+                  },
+                  scales: {
+                    yAxes: [{
 
-  }
-});
+                            ticks: {
+                                min: 0,
+                                stepSize: 10,
+                            }
+                    }]
+                  }
 
-      // logic to get new data
-      var getData = function() {
-        $.ajax({
-          url: '/hourly-calls',
-          success: function(data) {
-            myChart.data.labels==data.data.hrs_calls;
-            myChart.data.datasets[0].data=data.data.count_arr;
-            // re-render the chart
-            myChart.update();
-          }
-        });
-      };
+                }
+              });
+
+            // logic to get new data
+            var getData = function() {
+              $.ajax({
+                url: '/hourly-calls',
+                success: function(data) {
+                  $('#loadingbar').hide();
+                  myChart.data.labels==data.data.hrs_calls;
+                  myChart.data.datasets[0].data=data.data.count_arr;
+                  // re-render the chart
+                  myChart.update();
+                }
+              });
+            };
+
+        getData();
       // get new data every 3 seconds
       setInterval(getData,5000);
     }
@@ -444,25 +425,13 @@ jQuery(document).ready(function($){
 
     var myUrl = "api/my-bar";
       getAjax(myUrl);
+      tempData = [];
 
-var tempData={
-          labels: ["January", "February", "March", "April", "May", "June", "July"],
-          datasets: [{
-          label: '# of Votes',
-          backgroundColor: "#26B99A",
-          data: [51, 30, 40, 28, 92, 50, 45]
-          }, {
-          label: '# of Votes',
-          backgroundColor: "#03586A",
-          data: [41, 56, 25, 48, 72, 34, 12]
-          }]
-        }
 
-        console.log(tempData)
          init_charts_home('mybarChart',tempData);
          init_charts_home('lineChart',tempData);
-         init_recent_table('mybarChart',tempData);
-         init_active_table('lineChart',tempData);
+         init_recent_table('mybarChart');
+         init_active_table('lineChart');
 
 
 });
@@ -487,6 +456,24 @@ function getAjax(url){
 <style>
 .active_tab{
   color: #00afaa !important;
+}
+.loading {
+   width: 100%;
+   height: 100%;
+   top: 0;
+   left: 0;
+   display: block;
+   opacity: 0.7;
+   background-color: #fff;
+   z-index: 99;
+   text-align: center;
+}
+
+.loading-image {
+  position: absolute;
+  top: 100px;
+  left: 240px;
+  z-index: 100;
 }
   </style>
           @endsection
