@@ -3,170 +3,221 @@
 @section('title', 'Call-Q Reporting Service')
 @section('content')
 <div class="row">
-    <div class="col-lg-12">
-        <h1 class="page-header">Home</h1>
-    </div>
+        {{-- <h1 class="page-header">Home</h1> --}}
 </div>
 <!-- /.row -->
 <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel" style="">
+                        <div class="x_title">
+                            <h2>Date Pickers <small> Available with multiple designs</small></h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">Settings 1</a>
+                                        </li>
+                                        <li><a href="#">Settings 2</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
 
-    <div class="col-lg-6 col-md-6">
-        <div class="panel panel-green">
+                            <div class="container">
+                                <div class="row">
 
-<canvas id="myChart" width="350" height="400"></canvas>
-        </div>
-    </div>
+                                    <div class='col-sm-4'>
+                                        Only Date Picker
+                                        <div class="form-group">
+                                            <div class='input-group date' id='myDatepicker2'>
+                                                <input type='text' class="form-control" />
+                                                <span class="input-group-addon">
+                                                   <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class='col-sm-4'>
+                                            Only Date Picker
+                                            <div class="form-group">
+                                                <div class='input-group date' id='myDatepicker2'>
+                                                    <input type='text' class="form-control" />
+                                                    <span class="input-group-addon">
+                                                       <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='col-sm-4'>
+                                                <div class="form-group" style="margin-top: 3.5%;">
+                                                        <div class='input-group'>
+                                            <button type="submit" class="btn btn-success">Submit</button>
+                                        </div>
+                                    </div> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Data <small>Todays call volume is still in process and dynamically changing.</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
 
-    <div class="col-lg-6 col-md-6">
-        <div class="panel panel-red">
-        <canvas id="canvas"  width="350" height="290"></canvas>
-        </div>
-    </div>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="x_content">
+
+                    <p> <code></code>Total does not include todays callst</p>
+
+                    <div class="table-responsive">
+                      <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                          <tr class="headings">
+
+                            <th class="column-title">Day </th>
+                            <th class="column-title"> Date </th>
+                            <th class="column-title">Total Calls </th>
+                            <th class="column-title">Complete </th>
+                            <th class="column-title">Incomplete </th>
+                            <th class="column-title">% Complete </th>
+                            <th class="column-title">% Incomplete </th>
+                            <th class="column-title">File 1 </th>
+                            <th class="column-title">File 2 </th>
+                            <th class="column-title">File 3 </th>
+                            <th class="column-title">Web </th>
+
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          <tr class="even pointer">
+
+                            <td class=" ">Tue</td>
+                            <td class=" ">Today</td>
+                            <td class=" ">1411 </td>
+                            <td class=" ">827</td>
+                            <td class=" ">584</td>
+                            <td >58.61%</td>
+                            <td class=" ">41.39%</td>
+                            <td class=" ">In Process </td>
+                            <td class=" ">In Process</td>
+                            <td class=" ">n Process</td>
+                            <td >	In Process</td>
+
+                          </tr>
+
+                        </tbody>
+                      </table>
+                    </div>
 
 
+                  </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-    <script type="text/javascript">
-    var ctx = document.getElementById("myChart");
-var myChart = new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ["2015-01", "2015-02", "2015-03", "2015-04", "2015-05", "2015-06", "2015-07", "2015-08", "2015-09", "2015-10", "2015-11", "2015-12"],
-    datasets: [{
-      label: '# of Tomatoes',
-      data: [12, 19, 3, 5, 2, 3, 20, 3, 5, 6, 2, 1],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)',
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)'
-      ],
-      borderColor: [
-        'rgba(255,99,132,1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)',
-        'rgba(255,99,132,1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)'
-      ],
-      borderWidth: 1
-    }]
-  },
-  options: {
-    responsive: false,
-    scales: {
-      xAxes: [{
-        ticks: {
-          maxRotation: 90,
-          minRotation: 80
-        }
-      }],
-      yAxes: [{
-        ticks: {
-          beginAtZero: true
-        }
-      }]
-    }
-  }
-});
+                  <div class="x_content">
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <div class="card-box table-responsive">
+                              <p class="text-muted font-13 m-b-30">
+                                    Click on a data row to view details about that day..
+                              </p>
+
+                              <table id="datatable-keytable" class="table table-striped table-bordered">
+                                <thead>
+                                  <tr>
+                                        <th class="column-title">Day </th>
+                                        <th class="column-title"> Date </th>
+                                        <th class="column-title">Total Calls </th>
+                                        <th class="column-title">Complete </th>
+                                        <th class="column-title">Incomplete </th>
+                                        <th class="column-title">% Complete </th>
+                                        <th class="column-title">% Incomplete </th>
+                                        <th class="column-title">File 1 </th>
+                                        <th class="column-title">File 2 </th>
+                                        <th class="column-title">File 3 </th>
+                                        <th class="column-title">Web </th>
+                                  </tr>
+                                </thead>
 
 
-var chartColors = {
-  red: 'rgb(255, 99, 132)',
-  orange: 'rgb(255, 159, 64)',
-  yellow: 'rgb(255, 205, 86)',
-  green: 'rgb(75, 192, 192)',
-  blue: 'rgb(54, 162, 235)',
-  purple: 'rgb(153, 102, 255)',
-  grey: 'rgb(231,233,237)'
-};
-
-var randomScalingFactor = function() {
-  return (Math.random() > 0.5 ? 1.0 : -1.0) * Math.round(Math.random() * 100);
-}
-var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-var config = {
-  type: 'line',
-  data: {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
-    datasets: [{
-      label: "My First dataset",
-      backgroundColor: chartColors.red,
-      borderColor: chartColors.red,
-      data: [
-        randomScalingFactor(),
-        randomScalingFactor(),
-        randomScalingFactor(),
-        randomScalingFactor(),
-        randomScalingFactor(),
-        randomScalingFactor(),
-        randomScalingFactor()
-      ],
-      fill: false,
-    }, {
-      label: "My Second dataset",
-      fill: false,
-      backgroundColor: chartColors.blue,
-      borderColor: chartColors.blue,
-      data: [
-        randomScalingFactor(),
-        randomScalingFactor(),
-        randomScalingFactor(),
-        randomScalingFactor(),
-        randomScalingFactor(),
-        randomScalingFactor(),
-        randomScalingFactor()
-      ],
-    }]
-  },
-  options: {
-    responsive: true,
-    title: {
-      display: true,
-      text: 'Chart.js Line Chart'
-    },
-    tooltips: {
-      mode: 'label',
-    },
-    hover: {
-      mode: 'nearest',
-      intersect: true
-    },
-    scales: {
-      xAxes: [{
-        display: true,
-        scaleLabel: {
-          display: true,
-          labelString: 'Month'
-        }
-      }],
-      yAxes: [{
-        display: true,
-        scaleLabel: {
-          display: true,
-          labelString: 'Value'
-        }
-      }]
-    }
-  }
-};
-var ctx = document.getElementById("canvas").getContext("2d");
-window.myLine = new Chart(ctx, config);
-</script>
+                                <tbody>
+                                  <tr>
+                                        <td class=" ">Tue</td>
+                                        <td class=" ">Today</td>
+                                        <td class=" ">1411 </td>
+                                        <td class=" ">827</td>
+                                        <td class=" ">584</td>
+                                        <td >58.61%</td>
+                                        <td class=" ">41.39%</td>
+                                        <td class=" ">In Process </td>
+                                        <td class=" ">In Process</td>
+                                        <td class=" ">n Process</td>
+                                        <td >	In Process</td>
+                                  </tr>
+                                  <tr>
+                                        <td class=" ">Tue</td>
+                                        <td class=" ">Today</td>
+                                        <td class=" ">1411 </td>
+                                        <td class=" ">827</td>
+                                        <td class=" ">584</td>
+                                        <td >58.61%</td>
+                                        <td class=" ">41.39%</td>
+                                        <td class=" ">In Process </td>
+                                        <td class=" ">In Process</td>
+                                        <td class=" ">n Process</td>
+                                        <td >	In Process</td>
+                                  </tr>
+                                  <tr>
+                                        <td class=" ">Tue</td>
+                                        <td class=" ">Today</td>
+                                        <td class=" ">1411 </td>
+                                        <td class=" ">827</td>
+                                        <td class=" ">584</td>
+                                        <td >58.61%</td>
+                                        <td class=" ">41.39%</td>
+                                        <td class=" ">In Process </td>
+                                        <td class=" ">In Process</td>
+                                        <td class=" ">n Process</td>
+                                        <td >	In Process</td>
+                                  </tr>
+                                  <tr>
+                                        <td class=" ">Tue</td>
+                                        <td class=" ">Today</td>
+                                        <td class=" ">1411 </td>
+                                        <td class=" ">827</td>
+                                        <td class=" ">584</td>
+                                        <td >58.61%</td>
+                                        <td class=" ">41.39%</td>
+                                        <td class=" ">In Process </td>
+                                        <td class=" ">In Process</td>
+                                        <td class=" ">n Process</td>
+                                        <td >	In Process</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+              </div>
 </div>
 
+<script src="{!! asset('vendors/datatables.net-scroller/js/dataTables.scroller.min.js') !!}"></script>
+<script src="{!! asset('vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js') !!}"></script>
+<script src="{!! asset('vendors/datatables.net-responsive/js/dataTables.responsive.min.js') !!}"></script>
+<script src="{!! asset('vendors/datatables.net-keytable/js/dataTables.keyTable.min.js') !!}"></script>
+<script src="{!! asset('vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') !!}"></script>
 @endsection
