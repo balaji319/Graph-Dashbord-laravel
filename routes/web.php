@@ -32,7 +32,7 @@ Route::group([], function() {
 Route::get('/', 'UserController@login');
 Route::get('login', 'UserController@login');
 
-Route::get('my-home', 'UserController@myHome');
+
 Route::get('my-users', 'UserController@myUsers');
 Route::get('logout', 'UserController@logout');
 
@@ -57,6 +57,7 @@ Route::group(['namespace' => 'Web'], function() {
  */
 
 Route::group(['middleware' => ['userAuth']], function() {
+    Route::get('my-home', 'UserController@myHome');
     Route::get('advert-spikes-past-hour', 'Api\Report\HomeController@advertSpikesPastHour');
     Route::get('hourly-calls', 'Api\Report\HomeController@hourlyCalls');
     Route::get('most-recent-calls', 'Api\Report\HomeController@mostRecentCalls');
