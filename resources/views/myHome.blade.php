@@ -99,21 +99,13 @@ $var_date = date("D - M. d Y", $unixTime);  ?>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
-                      {{-- <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li> --}}
+
                       <li><a class="close-link"><i class="fa fa-close"></i></a>
                       </li>
                     </ul>
                     <div class="clearfix"></div>
                   </div>
-                  <div class="x_content">
+                  <div class="x_content" style="min-height: 250px">
                     <table class="table table-hover" id="records_table">
                       <thead>
                         <tr>
@@ -124,7 +116,9 @@ $var_date = date("D - M. d Y", $unixTime);  ?>
                         </tr>
                       </thead>
                       <tbody >
-
+                          <div  class="loading-imageId" id="loadingtable" >
+                              <img   class="loading-image"  src="{!! asset('images/ajax-loader.gif') !!}"  alt="Loading..." />
+                          </div>
                       </tbody>
                     </table>
                   </div>
@@ -138,22 +132,14 @@ $var_date = date("D - M. d Y", $unixTime);  ?>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
-                      {{-- <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li> --}}
+
                       <li><a class="close-link"><i class="fa fa-close"></i></a>
                       </li>
                     </ul>
                     <div class="clearfix"></div>
                   </div>
-                  <div class="x_content">
-                    <table class="table table-hover">
+                  <div class="x_content" style="min-height: 250px">
+                    <table class="table table-hover" id="records_table1">
                       <thead>
                         <tr>
                           <th>Station</th>
@@ -162,24 +148,10 @@ $var_date = date("D - M. d Y", $unixTime);  ?>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
+                          <div  class="loading-imageId" id="loadingtable1" >
+                              <img   class="loading-image"  src="{!! asset('images/ajax-loader.gif') !!}"  alt="Loading..." />
+                          </div>
 
-                        </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td>Larry</td>
-                          <td>the Bird</td>
-
-                        </tr>
                       </tbody>
                     </table>
 
@@ -203,6 +175,7 @@ var getDataRecentCalls = function() {
   $.ajax({
     url: '/most-recent-calls',
     success: function(response) {
+      $('#loadingtable').hide();
       var trHTML = '';
       $.each(response.data, function(i, item) {
         var strType = item.HangUpCount==1 ? 'No' :'Yes';
@@ -235,21 +208,19 @@ function init_active_table(min, max) {
   // logic to get new data
   var getDataActiveCalls = function() {
   $.ajax({
-    url: 'api/my-bar',
-    success: function(data) {
-      // process your data to pull out what you plan to use to update the chart
-      // e.g. new label and a new data point
-      console.log("aaaaaa");
-      console.log(myChart.data)
-      // add new label and data point to chart's underlying data structures
-      //myChart.data.labels.push("Post " + postId++);
-      myChart.data.datasets[0].data=getRandomIntInclusive(-1,2);
-      myChart.data.datasets[1].data=getRandomIntInclusive(-1,2);
-      // re-render the chart
-      myChart.update();
+    url: '/top-active-numbers',
+    success: function(response) {
+      var trHTML = '';
+      $('#loadingtable1').hide();
+      $.each(response.data, function(i, item) {
+        trHTML += '<tr><td>' + item.Name  + '</td><td>' + item.Calls + '</td><td>' + item.LastCall+ '</td></tr>';
+    });
+    $('#records_table1').append(trHTML);
+
     }
   });
 };
+getDataActiveCalls();
 }
 
 
@@ -417,7 +388,7 @@ function init_charts_home(type,data) {
 
         getData();
       // get new data every 3 seconds
-      setInterval(getData,5000);
+      setInterval(getData,10000);
     }
    }
 }
