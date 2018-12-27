@@ -17,7 +17,7 @@ class userAuth
     public function handle($request, Closure $next)
     {
         if (empty(session('user_info'))) {
-            return view('login');
+            return redirect('login');
         }
         return $next($request);
     }
