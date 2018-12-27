@@ -15,13 +15,15 @@
     <link href="{!! asset('vendors/font-awesome/css/font-awesome.min.css') !!}" rel="stylesheet">
     <!-- NProgress -->
      <link href="{!! asset('vendors/nprogress/nprogress.css') !!}" rel="stylesheet">
-
-
+    <!-- bootstrap-daterangepicker -->
+     <link href="{!! asset('vendors/bootstrap-daterangepicker/daterangepicker.css') !!}" rel="stylesheet">
+     <!-- bootstrap-datetimepicker -->
+      <link href="{!! asset('vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css') !!}" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="{!! asset('build/css/custom.min.css') !!}" rel="stylesheet">
   </head>
 
-  <body class="nav-sm">
+  <body class="nav-md">
     <div class="container body">
       <div class="main_container">
 
@@ -51,6 +53,14 @@
     <script src="{!! asset('vendors/fastclick/lib/fastclick.js') !!}"></script>
     <!-- NProgress -->
     <script src="{!! asset('vendors/nprogress/nprogress.js') !!}"></script>
+
+
+      <!-- bootstrap-daterangepicker -->
+  <script src="{!! asset('vendors/moment/min/moment.min.js') !!}"></script>
+
+  <!-- bootstrap-datetimepicker -->
+  <script src="{!! asset('vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') !!}"></script>
+
     <!-- Chart.js -->
     <script src="{!! asset('vendors/Chart.js/dist/Chart.min.js') !!}"></script>
 

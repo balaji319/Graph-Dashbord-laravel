@@ -5,6 +5,7 @@
 <div class="row">
         {{-- <h1 class="page-header">Home</h1> --}}
 </div>
+
 <!-- /.row -->
 <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
@@ -36,7 +37,7 @@
                                     <div class='col-sm-4'>
                                         Only Date Picker
                                         <div class="form-group">
-                                            <div class='input-group date' id='myDatepicker2'>
+                                            <div class='input-group date' id='myDatepicker'>
                                                 <input type='text' class="form-control" />
                                                 <span class="input-group-addon">
                                                    <span class="glyphicon glyphicon-calendar"></span>
@@ -439,10 +440,22 @@
   <script src="{!! asset('vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js') !!}"></script>
   <script src="{!! asset('vendors/datatables.net-scroller/js/dataTables.scroller.min.js') !!}"></script>
 
+
   <script src="{!! asset('vendors/jszip/dist/jszip.min.js') !!}"></script>
   <script src="{!! asset('vendors/pdfmake/build/pdfmake.min.js') !!}"></script>
   <script src="{!! asset('vendors/pdfmake/build/vfs_fonts.js') !!}"></script>
 
+  <script>
+
+    $(document).ready(function() {
+      $('#myDatepicker2').datetimepicker({
+        format: 'DD.MM.YYYY'
+      });
+      $('#myDatepicker').datetimepicker({
+        format: 'DD.MM.YYYY'
+    });
+});
+      </script>
 
 
 

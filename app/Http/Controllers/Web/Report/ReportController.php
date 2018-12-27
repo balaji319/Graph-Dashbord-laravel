@@ -17,6 +17,6 @@ class ReportController extends Controller
     }
 
     public function staticalSummary() {
-        return view('reports.executivecallsummary');
+        return view('reports.statisticshistory');
     }
 }
